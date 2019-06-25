@@ -1,6 +1,6 @@
-package com.bsas.androiddevs.manejoerrores.manager.api;
+package com.bsas.androiddevs.manejoerrores.repository.api;
 
-import com.bsas.androiddevs.manejoerrores.manager.api.dto.GetMoviesResponse;
+import com.bsas.androiddevs.manejoerrores.repository.api.dto.GetMoviesResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

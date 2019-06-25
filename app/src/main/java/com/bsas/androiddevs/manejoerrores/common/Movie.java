@@ -1,20 +1,26 @@
 package com.bsas.androiddevs.manejoerrores.common;
 
+import com.bsas.androiddevs.manejoerrores.repository.db.entity.MovieDb;
+
 public class Movie {
 
     private String title;
-    private String description;
+    private int year;
 
-    public Movie(String title, String description) {
+    public Movie(String title, int year) {
         this.title = title;
-        this.description = description;
+        this.year = year;
+    }
+
+    public static Movie createFromMovieDb(MovieDb movieDb) {
+        return new Movie(movieDb.getTitle(), movieDb.getYear());
     }
 
     public String getTitle() {
         return title;
     }
 
-    public String getDescription() {
-        return description;
+    public int getYear() {
+        return year;
     }
 }

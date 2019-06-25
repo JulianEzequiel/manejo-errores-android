@@ -1,7 +1,12 @@
 package com.bsas.androiddevs.manejoerrores.presenter;
 
+import com.bsas.androiddevs.manejoerrores.R;
+import com.bsas.androiddevs.manejoerrores.common.Movie;
 import com.bsas.androiddevs.manejoerrores.manager.MovieManager;
+import com.bsas.androiddevs.manejoerrores.manager.listener.GetMoviesObserver;
 import com.bsas.androiddevs.manejoerrores.ui.view.MainView;
+
+import java.util.List;
 
 public class MainPresenter extends BasePresenter<MainView> {
 
@@ -12,8 +17,17 @@ public class MainPresenter extends BasePresenter<MainView> {
     }
 
     public void getMovies() {
-        //TODO enviar listener
-        this.movieManager.getMovies();
+        this.movieManager.getMovies(new GetMoviesObserver() {
+            @Override
+            public void onMoviesObtained(List<Movie> movies) {
+                MainPresenter.this.view.displayMovies(movies);
+            }
+
+            @Override
+            public void onErrorObtainingMovies() {
+                MainPresenter.this.view.displayErrorMessage(R.string.error_obtaining_movies);
+            }
+        });
     }
 
 }

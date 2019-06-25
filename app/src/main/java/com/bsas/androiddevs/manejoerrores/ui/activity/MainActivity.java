@@ -3,9 +3,12 @@ package com.bsas.androiddevs.manejoerrores.ui.activity;
 import android.os.Bundle;
 
 import com.bsas.androiddevs.manejoerrores.R;
+import com.bsas.androiddevs.manejoerrores.common.Movie;
 import com.bsas.androiddevs.manejoerrores.presenter.MainPresenter;
 import com.bsas.androiddevs.manejoerrores.presenter.PresenterProvider;
 import com.bsas.androiddevs.manejoerrores.ui.view.MainView;
+
+import java.util.List;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainView {
 
@@ -34,4 +37,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
         return PresenterProvider.get().getPresenter(MainPresenter.class);
     }
 
+    @Override
+    public void displayMovies(List<Movie> movies) {
+
+    }
 }

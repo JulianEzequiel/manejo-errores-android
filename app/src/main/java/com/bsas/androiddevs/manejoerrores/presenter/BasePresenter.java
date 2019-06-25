@@ -4,14 +4,14 @@ import com.bsas.androiddevs.manejoerrores.ui.view.BaseView;
 
 public class BasePresenter<T extends BaseView> {
 
-    private T baseView;
+    protected T view;
 
     public void attachView(T view) {
-        this.baseView = view;
+        this.view = view;
     }
 
     public void dettachView() {
-        this.baseView = null;
+        this.view = null;
     }
 
 }

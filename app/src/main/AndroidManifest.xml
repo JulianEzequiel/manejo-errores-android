@@ -3,6 +3,7 @@
     package="com.bsas.androiddevs.manejoerrores">
 
     <application
+        android:name=".ui.application.MovieAppApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

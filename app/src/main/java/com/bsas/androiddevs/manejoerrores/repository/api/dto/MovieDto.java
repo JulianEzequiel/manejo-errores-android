@@ -1,4 +1,4 @@
-package com.bsas.androiddevs.manejoerrores.manager.api.dto;
+package com.bsas.androiddevs.manejoerrores.repository.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,7 +9,7 @@ public class MovieDto {
     @JsonProperty("Title")
     private String title;
     @JsonProperty("Year")
-    private String year;
+    private int year;
     @JsonProperty("imdbID")
     private String imdbId;
 
@@ -17,7 +17,7 @@ public class MovieDto {
         return imdbId;
     }
 
-    public String getYear() {
+    public int getYear() {
         return year;
     }
 

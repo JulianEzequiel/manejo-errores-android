@@ -1,4 +1,4 @@
-package com.bsas.androiddevs.manejoerrores.manager.api.dto;
+package com.bsas.androiddevs.manejoerrores.repository.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

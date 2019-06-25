@@ -1,16 +1,19 @@
 package com.bsas.androiddevs.manejoerrores.manager;
 
-import com.bsas.androiddevs.manejoerrores.manager.api.MoviesApiClient;
+import com.bsas.androiddevs.manejoerrores.manager.listener.GetMoviesObserver;
+import com.bsas.androiddevs.manejoerrores.repository.MovieRepository;
 
 public class MovieManager {
 
-    private MoviesApiClient moviesApiClient;
+    private MovieRepository movieRepository;
 
     public MovieManager() {
-        this.moviesApiClient = MoviesApiClient.getInstance();
+        this.movieRepository = new MovieRepository();
     }
 
-    public void getMovies() {
-        //TODO
+    public void getMovies(GetMoviesObserver observer) {
+        this.movieRepository.getMovies(observer);
     }
+
+
 }

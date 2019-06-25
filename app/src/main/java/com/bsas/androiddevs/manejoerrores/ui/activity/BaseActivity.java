@@ -24,7 +24,17 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     }
 
     @Override
+    public void displayErrorMessage(int message) {
+        //TODO
+    }
+
+    @Override
     public void displayWarningMessage(String message) {
+        //TODO
+    }
+
+    @Override
+    public void displayWarningMessage(int stringId) {
         //TODO
     }
 
