@@ -31,11 +31,14 @@ public class MoviesRecyclerViewAdapter extends RecyclerView.Adapter<MoviesRecycl
     public void onBindViewHolder(@NonNull MovieViewHolder movieViewHolder, int index) {
         Movie movie = this.movies.get(index);
         movieViewHolder.movieTitleText.setText(movie.getTitle());
-        movieViewHolder.movieYearText.setText(movie.getYear());
+        movieViewHolder.movieYearText.setText(String.valueOf(movie.getYear()));
     }
 
     @Override
     public int getItemCount() {
+        if (this.movies == null) {
+            return 0;
+        }
         return this.movies.size();
     }
 

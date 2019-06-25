@@ -23,6 +23,7 @@ public class GetAllMoviesTask extends AsyncTask<Void, Void, List<MovieDb>> {
         try {
             return this.movieDao.findAll();
         } catch (Exception e) {
+            e.printStackTrace();
             //TODO log exception
             return null;
         }

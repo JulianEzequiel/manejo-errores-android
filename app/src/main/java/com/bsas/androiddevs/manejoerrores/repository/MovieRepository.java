@@ -59,7 +59,7 @@ public class MovieRepository {
             public void onErrorSavingMovies() {
                 observer.onErrorObtainingMovies();
             }
-        });
+        }).execute();
     }
 
     private void returnMoviesFromDb(final GetMoviesObserver observer) {
@@ -73,6 +73,6 @@ public class MovieRepository {
             public void errorObtainingMovies() {
                 observer.onErrorObtainingMovies();
             }
-        });
+        }).execute();
     }
 }

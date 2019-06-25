@@ -24,11 +24,12 @@ public class SaveMoviesTask extends AsyncTask<Void, Void, Boolean> {
     protected Boolean doInBackground(Void... voids) {
         try {
             this.movieDao.saveAll(this.movieDbs);
+            return true;
         } catch (Exception e) {
+            e.printStackTrace();
             //TODO log exception
             return false;
         }
-        return null;
     }
 
     @Override

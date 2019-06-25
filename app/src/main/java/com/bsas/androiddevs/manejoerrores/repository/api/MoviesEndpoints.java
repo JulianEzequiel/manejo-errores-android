@@ -8,7 +8,7 @@ import retrofit2.http.Query;
 
 public interface MoviesEndpoints {
 
-    @GET
+    @GET("/")
     Call<GetMoviesResponse> getMovies(@Query("apikey") String apiKey,
                                       @Query("s") String query,
                                       @Query("type") String movieType);
