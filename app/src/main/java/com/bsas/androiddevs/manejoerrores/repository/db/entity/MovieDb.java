@@ -20,19 +20,15 @@ public class MovieDb {
 
     private Date creationDate;
 
-    private MovieDb() {
-    }
-
-    public MovieDb(@NonNull String id, String title, int year) {
+    public MovieDb(@NonNull String id, String title, int year, Date creationDate) {
         this.id = id;
         this.title = title;
         this.year = year;
-        this.creationDate = new Date();
+        this.creationDate = creationDate;
     }
 
     public static MovieDb createFromMovieDto(MovieDto movieDto) {
-        return new MovieDb(movieDto.getImdbId(), movieDto.getTitle(),
-                movieDto.getYear());
+        return new MovieDb(movieDto.getImdbId(), movieDto.getTitle(), movieDto.getYear(), new Date());
     }
 
     @NonNull

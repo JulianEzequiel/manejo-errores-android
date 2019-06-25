@@ -3,14 +3,17 @@ package com.bsas.androiddevs.manejoerrores.repository.db;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
+import com.bsas.androiddevs.manejoerrores.repository.db.converter.DateDbConverter;
 import com.bsas.androiddevs.manejoerrores.repository.db.dao.MovieDao;
 import com.bsas.androiddevs.manejoerrores.repository.db.entity.MovieDb;
 
 @Database(entities = {MovieDb.class},
         version = 1,
         exportSchema = false)
+@TypeConverters({DateDbConverter.class})
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String DB_NAME = "AppDatabase";
