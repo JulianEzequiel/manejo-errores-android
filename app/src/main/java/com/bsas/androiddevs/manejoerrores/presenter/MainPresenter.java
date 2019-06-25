@@ -20,12 +20,13 @@ public class MainPresenter extends BasePresenter<MainView> {
         this.movieManager.getMovies(new GetMoviesObserver() {
             @Override
             public void onMoviesObtained(List<Movie> movies) {
-                MainPresenter.this.view.displayMovies(movies);
+                if (MainPresenter.this.view != null) MainPresenter.this.view.displayMovies(movies);
             }
 
             @Override
             public void onErrorObtainingMovies() {
-                MainPresenter.this.view.displayErrorMessage(R.string.error_obtaining_movies);
+                if (MainPresenter.this.view != null)
+                    MainPresenter.this.view.displayErrorMessage(R.string.error_obtaining_movies);
             }
         });
     }
