@@ -22,23 +22,18 @@ abstract class AppDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: AppDatabase? = null
 
-        fun instance() : AppDatabase {
+        fun instance(): AppDatabase {
             return INSTANCE ?: throw RuntimeException("Database not configured")
         }
 
         fun configure(context: Context) {
             synchronized(this) {
-                var instance = INSTANCE
-
-                if (instance == null) {
-                    instance = Room.databaseBuilder(
+                if (INSTANCE == null) {
+                    INSTANCE = Room.databaseBuilder(
                             context.applicationContext,
                             AppDatabase::class.java,
-                            DB_NAME
-                    )
-                            .fallbackToDestructiveMigration()
+                            DB_NAME)
                             .build()
-                    INSTANCE = instance
                 }
             }
         }

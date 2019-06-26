@@ -1,6 +1,7 @@
 package com.bsas.androiddevs.manejoerrores.viewmodel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bsas.androiddevs.manejoerrores.common.Movie
 import com.bsas.androiddevs.manejoerrores.manager.MovieManager
@@ -17,7 +18,7 @@ class MainViewModel : ViewModel() {
     private val viewScope = CoroutineScope(Dispatchers.Main + this.viewModelJob)
 
 
-    private lateinit var _movies: LiveData<List<Movie>>
+    private var _movies = MutableLiveData<List<Movie>>()
     val movies: LiveData<List<Movie>>
         get() = _movies
 
@@ -27,7 +28,7 @@ class MainViewModel : ViewModel() {
 
     private fun getMovies() {
         viewScope.launch {
-            _movies = movieManager.getMovies()
+            _movies.value = movieManager.getMovies()
         }
     }
 

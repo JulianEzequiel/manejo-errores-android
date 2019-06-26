@@ -15,7 +15,7 @@ class MovieRepository {
     private val moviesApiClient: MoviesApiClient = MoviesApiClient.instance()
     private val movieDao: MovieDao = AppDatabase.instance().movieDao
 
-    suspend fun getMovies(): LiveData<List<Movie>> {
+    suspend fun getMovies(): List<Movie> {
         if (this.movieDao.countAll() == 0) {
             this.getMoviesFromApiAndSave()
         }
@@ -29,9 +29,9 @@ class MovieRepository {
         }
     }
 
-    private suspend fun getAllMoviesFromDb(): LiveData<List<Movie>> {
-        val movies: LiveData<List<MovieDb>> = this.movieDao.findAll()
-        return Transformations.map(movies) { x -> x.movieDbsToMovies() }
+    private suspend fun getAllMoviesFromDb(): List<Movie> {
+        val movies: List<MovieDb> = this.movieDao.findAll()
+        return movies.movieDbsToMovies()
     }
 
 }

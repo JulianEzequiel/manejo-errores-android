@@ -8,14 +8,10 @@ import kotlinx.coroutines.withContext
 
 class MovieManager {
 
-    private val movieRepository : MovieRepository = MovieRepository()
+    private val movieRepository: MovieRepository = MovieRepository()
 
-    suspend fun getMovies() : LiveData<List<Movie>> {
-        lateinit var movieList : LiveData<List<Movie>>
-        withContext(Dispatchers.IO) {
-            movieList = movieRepository.getMovies()
-        }
-        return movieList
+    suspend fun getMovies(): List<Movie> {
+        return movieRepository.getMovies()
     }
 
 }
