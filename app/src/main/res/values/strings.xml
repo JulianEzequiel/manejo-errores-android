@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ManejoErrores</string>
+    <string name="error_obtaining_movies">Ocurrió un error al obtener las películas</string>
+</resources>
