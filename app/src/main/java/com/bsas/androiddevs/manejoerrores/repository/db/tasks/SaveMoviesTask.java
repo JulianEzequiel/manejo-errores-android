@@ -24,7 +24,7 @@ public class SaveMoviesTask extends AsyncTask<Void, Void, Boolean> {
     @Override
     protected Boolean doInBackground(Void... voids) {
         try {
-            this.movieDao.saveAll(this.movieDbs);
+            this.movieDao.upsertAll(this.movieDbs);
             return true;
         } catch (Exception e) {
             ExceptionLogger.error(e);
