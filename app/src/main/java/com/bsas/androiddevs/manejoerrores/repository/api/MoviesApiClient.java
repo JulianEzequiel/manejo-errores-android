@@ -1,5 +1,6 @@
 package com.bsas.androiddevs.manejoerrores.repository.api;
 
+import com.bsas.androiddevs.manejoerrores.common.exception.ExceptionLogger;
 import com.bsas.androiddevs.manejoerrores.repository.api.callback.EndpointCallback;
 import com.bsas.androiddevs.manejoerrores.repository.api.dto.GetMoviesResponse;
 
@@ -61,6 +62,7 @@ public class MoviesApiClient {
 
             @Override
             public void onFailure(Call<Y> call, Throwable t) {
+                ExceptionLogger.error(t);
                 endpointCallback.onFailure(t);
             }
         });

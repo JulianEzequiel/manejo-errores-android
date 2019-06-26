@@ -2,6 +2,8 @@ package com.bsas.androiddevs.manejoerrores.presenter;
 
 import android.content.Context;
 
+import com.bsas.androiddevs.manejoerrores.common.exception.ExceptionLogger;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,6 +38,7 @@ public class PresenterProvider {
             this.presenterCache.put(clazz.getName(), presenter);
             return presenter;
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+            ExceptionLogger.error(e);
             e.printStackTrace();
         }
         return null;

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 
 import com.bsas.androiddevs.manejoerrores.common.exception.DbException;
+import com.bsas.androiddevs.manejoerrores.common.exception.ExceptionLogger;
 import com.bsas.androiddevs.manejoerrores.repository.db.access.builder.IBuilder;
 import com.bsas.androiddevs.manejoerrores.repository.db.entity.DbEntity;
 
@@ -32,6 +33,7 @@ public abstract class SingleDataAccess<T extends DbEntity> extends DataAccess<T>
                 throw new Exception("Error while inserting register");
             }
         } catch (Exception e) {
+            ExceptionLogger.error(e);
             throw new DbException(e);
         } finally {
             this.releaseResourcesOnFinally();
@@ -52,6 +54,7 @@ public abstract class SingleDataAccess<T extends DbEntity> extends DataAccess<T>
                 }
             }
         } catch (Exception e) {
+            ExceptionLogger.error(e);
             throw new DbException(e);
         } finally {
             this.releaseResourcesOnFinally();
@@ -66,6 +69,7 @@ public abstract class SingleDataAccess<T extends DbEntity> extends DataAccess<T>
         try {
             this.database.update(this.getTableName(), this.builder.createValues(entity), this.getIdWhereClause(entity), null);
         } catch (Exception e) {
+            ExceptionLogger.error(e);
             throw new DbException(e);
         } finally {
             this.releaseResourcesOnFinally();
@@ -91,6 +95,7 @@ public abstract class SingleDataAccess<T extends DbEntity> extends DataAccess<T>
                 }
             }
         } catch (Exception e) {
+            ExceptionLogger.error(e);
             throw new DbException(e);
         } finally {
             this.releaseResourcesOnFinally(cursor);

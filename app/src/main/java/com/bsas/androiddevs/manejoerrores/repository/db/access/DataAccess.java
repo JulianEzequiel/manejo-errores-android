@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 
 import com.bsas.androiddevs.manejoerrores.common.exception.DbException;
+import com.bsas.androiddevs.manejoerrores.common.exception.ExceptionLogger;
 import com.bsas.androiddevs.manejoerrores.repository.db.access.builder.IBuilder;
 import com.bsas.androiddevs.manejoerrores.repository.db.entity.DbEntity;
 
@@ -45,6 +46,7 @@ public abstract class DataAccess<T extends DbEntity> extends BaseDataAccess {
                 }
             }
         } catch (Exception e) {
+            ExceptionLogger.error(e);
             throw new DbException(e);
         } finally {
             if (cursor != null) {

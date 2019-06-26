@@ -2,6 +2,7 @@ package com.bsas.androiddevs.manejoerrores.repository.db.tasks;
 
 import android.os.AsyncTask;
 
+import com.bsas.androiddevs.manejoerrores.common.exception.ExceptionLogger;
 import com.bsas.androiddevs.manejoerrores.repository.db.access.impl.MovieDao;
 import com.bsas.androiddevs.manejoerrores.repository.db.entity.MovieDb;
 import com.bsas.androiddevs.manejoerrores.repository.db.tasks.observer.GetAllMoviesTaskObserver;
@@ -23,8 +24,7 @@ public class GetAllMoviesTask extends AsyncTask<Void, Void, List<MovieDb>> {
         try {
             return this.movieDao.findAll();
         } catch (Exception e) {
-            e.printStackTrace();
-            //TODO log exception
+            ExceptionLogger.error(e);
             return null;
         }
     }

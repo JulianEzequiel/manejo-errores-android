@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 
 import com.bsas.androiddevs.manejoerrores.common.exception.DbException;
+import com.bsas.androiddevs.manejoerrores.common.exception.ExceptionLogger;
 import com.bsas.androiddevs.manejoerrores.repository.db.access.SingleDataAccess;
 import com.bsas.androiddevs.manejoerrores.repository.db.access.builder.MovieDbBuilder;
 import com.bsas.androiddevs.manejoerrores.repository.db.entity.MovieDb;
@@ -49,6 +50,7 @@ public class MovieDao extends SingleDataAccess<MovieDb> {
                 cursor.close();
             }
         } catch (Exception e) {
+            ExceptionLogger.error(e);
             throw new DbException(e);
         } finally {
             if (cursor != null) {

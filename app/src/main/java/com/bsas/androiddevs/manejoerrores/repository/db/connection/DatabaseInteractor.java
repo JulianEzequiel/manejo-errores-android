@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.bsas.androiddevs.manejoerrores.common.exception.ExceptionLogger;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -63,6 +65,7 @@ public class DatabaseInteractor extends SQLiteOpenHelper {
                         }
                     }
                 } catch (Exception e) {
+                    ExceptionLogger.error(e);
                     Log.e("onCreate()", "Unable to update database", e);
                 } finally{
                     try {
@@ -70,6 +73,7 @@ public class DatabaseInteractor extends SQLiteOpenHelper {
                             reader.close();
                         }
                     } catch (Exception e2) {
+                        ExceptionLogger.error(e2);
                         Log.e("onCreate()", "Error closing reader", e2);
                     }
                 }
@@ -93,6 +97,7 @@ public class DatabaseInteractor extends SQLiteOpenHelper {
                     }
                     this.addExecutedUpdate(version);
                 } catch (Exception e) {
+                    ExceptionLogger.error(e);
                     Log.e("onCreate()", "Unable to update database", e);
                 } finally{
                     try {
@@ -100,6 +105,7 @@ public class DatabaseInteractor extends SQLiteOpenHelper {
                             reader.close();
                         }
                     } catch (Exception e2) {
+                        ExceptionLogger.error(e2);
                         Log.e("onCreate()", "Error closing reader", e2);
                     }
                 }
@@ -147,6 +153,7 @@ public class DatabaseInteractor extends SQLiteOpenHelper {
             succed = true;
 
         } catch (Exception e) {
+            ExceptionLogger.error(e);
             succed = false;
         }
         return succed;
@@ -188,6 +195,7 @@ public class DatabaseInteractor extends SQLiteOpenHelper {
             }
 
         } catch (Exception e) {
+            ExceptionLogger.error(e);
             succed = false;
         }
         return succed;
