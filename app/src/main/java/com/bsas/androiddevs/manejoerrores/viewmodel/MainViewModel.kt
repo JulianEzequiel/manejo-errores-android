@@ -4,19 +4,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bsas.androiddevs.manejoerrores.common.Movie
+import com.bsas.androiddevs.manejoerrores.common.exception.UIAlertException
+import com.bsas.androiddevs.manejoerrores.common.exception.UIErrorException
 import com.bsas.androiddevs.manejoerrores.manager.MovieManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class MainViewModel : ViewModel() {
+class MainViewModel : BaseViewModel() {
 
     private val movieManager: MovieManager = MovieManager()
 
     private var viewModelJob = Job()
     private val viewScope = CoroutineScope(Dispatchers.Main + this.viewModelJob)
-
 
     private var _movies = MutableLiveData<List<Movie>>()
     val movies: LiveData<List<Movie>>
@@ -27,8 +28,14 @@ class MainViewModel : ViewModel() {
     }
 
     private fun getMovies() {
-        viewScope.launch {
-            _movies.value = movieManager.getMovies()
+        try {
+            viewScope.launch {
+                _movies.value = movieManager.getMovies()
+            }
+        } catch (alert: UIAlertException) {
+            this.displayWarning(alert.reason)
+        } catch (error: UIErrorException) {
+            this.displayError(error.reason)
         }
     }
 

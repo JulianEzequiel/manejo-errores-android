@@ -12,9 +12,8 @@ import com.bsas.androiddevs.manejoerrores.databinding.ActivityMainBinding
 import com.bsas.androiddevs.manejoerrores.ui.activity.adapter.MoviesRecyclerViewAdapter
 import com.bsas.androiddevs.manejoerrores.viewmodel.MainViewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<MainViewModel>() {
 
-    private lateinit var viewModel : MainViewModel
     private lateinit var binding : ActivityMainBinding
 
     private lateinit var moviesRecyclerViewAdapter : MoviesRecyclerViewAdapter
@@ -23,10 +22,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         this.binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        this.viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
         this.bindObservers()
         this.bindRecyclerAdapter()
+    }
+
+    override fun createViewModel() : MainViewModel {
+        return ViewModelProviders.of(this).get(MainViewModel::class.java)
     }
 
     private fun bindObservers() {
@@ -35,7 +37,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun refreshMovieList(movies: List<Movie>) {
         this.moviesRecyclerViewAdapter.refreshMovies(movies)
-        this.binding.invalidateAll() //Neccesary?
     }
 
     private fun bindRecyclerAdapter() {
