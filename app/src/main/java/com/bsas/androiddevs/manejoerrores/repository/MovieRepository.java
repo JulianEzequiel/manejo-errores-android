@@ -1,13 +1,15 @@
 package com.bsas.androiddevs.manejoerrores.repository;
 
+import android.content.Context;
+
+import com.bsas.androiddevs.manejoerrores.common.exception.DbException;
 import com.bsas.androiddevs.manejoerrores.common.util.CollectionsConverter;
 import com.bsas.androiddevs.manejoerrores.manager.listener.GetMoviesObserver;
 import com.bsas.androiddevs.manejoerrores.repository.api.MoviesApiClient;
 import com.bsas.androiddevs.manejoerrores.repository.api.callback.EndpointCallback;
 import com.bsas.androiddevs.manejoerrores.repository.api.dto.GetMoviesResponse;
 import com.bsas.androiddevs.manejoerrores.repository.api.dto.MovieDto;
-import com.bsas.androiddevs.manejoerrores.repository.db.AppDatabase;
-import com.bsas.androiddevs.manejoerrores.repository.db.dao.MovieDao;
+import com.bsas.androiddevs.manejoerrores.repository.db.access.impl.MovieDao;
 import com.bsas.androiddevs.manejoerrores.repository.db.entity.MovieDb;
 import com.bsas.androiddevs.manejoerrores.repository.db.tasks.GetAllMoviesTask;
 import com.bsas.androiddevs.manejoerrores.repository.db.tasks.SaveMoviesTask;
@@ -21,12 +23,12 @@ public class MovieRepository {
     private MoviesApiClient moviesApiClient;
     private MovieDao movieDao;
 
-    public MovieRepository() {
+    public MovieRepository(Context context) {
         this.moviesApiClient = MoviesApiClient.getInstance();
-        this.movieDao = AppDatabase.getInstance().movieDao();
+        this.movieDao = new MovieDao(context);
     }
 
-    public void getMovies(GetMoviesObserver observer) {
+    public void getMovies(GetMoviesObserver observer) throws DbException {
         if (this.movieDao.countAll() == 0) {
             this.getMoviesFromApiAndSave(observer);
         }

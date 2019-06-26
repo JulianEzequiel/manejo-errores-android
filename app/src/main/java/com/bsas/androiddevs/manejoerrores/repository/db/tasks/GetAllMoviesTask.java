@@ -2,7 +2,7 @@ package com.bsas.androiddevs.manejoerrores.repository.db.tasks;
 
 import android.os.AsyncTask;
 
-import com.bsas.androiddevs.manejoerrores.repository.db.dao.MovieDao;
+import com.bsas.androiddevs.manejoerrores.repository.db.access.impl.MovieDao;
 import com.bsas.androiddevs.manejoerrores.repository.db.entity.MovieDb;
 import com.bsas.androiddevs.manejoerrores.repository.db.tasks.observer.GetAllMoviesTaskObserver;
 

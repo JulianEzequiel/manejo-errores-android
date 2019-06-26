@@ -42,7 +42,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
 
     @Override
     protected MainPresenter createPresenter() {
-        return PresenterProvider.get().getPresenter(MainPresenter.class);
+        return PresenterProvider.get().getPresenter(this, MainPresenter.class);
     }
 
     @Override

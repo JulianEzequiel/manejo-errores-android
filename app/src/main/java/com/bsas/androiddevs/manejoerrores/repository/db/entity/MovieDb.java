@@ -1,18 +1,13 @@
 package com.bsas.androiddevs.manejoerrores.repository.db.entity;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 import com.bsas.androiddevs.manejoerrores.repository.api.dto.MovieDto;
 
 import java.util.Date;
 
-@Entity(tableName = "MOVIES")
-public class MovieDb {
+public class MovieDb implements DbEntity {
 
-    @PrimaryKey
-    @NonNull
     private String id;
 
     private String title;
@@ -20,18 +15,16 @@ public class MovieDb {
 
     private Date creationDate;
 
-    public MovieDb(@NonNull String id, String title, int year, Date creationDate) {
-        this.id = id;
-        this.title = title;
-        this.year = year;
-        this.creationDate = creationDate;
-    }
-
     public static MovieDb createFromMovieDto(MovieDto movieDto) {
-        return new MovieDb(movieDto.getImdbId(), movieDto.getTitle(), movieDto.getYear(), new Date());
+        MovieDb movieDb = new MovieDb();
+        movieDb.setId(movieDto.getImdbId());
+        movieDb.setTitle(movieDto.getTitle());
+        movieDb.setYear(movieDto.getYear());
+        movieDb.setCreationDate(new Date());
+        return movieDb;
     }
 
-    @NonNull
+    @Override
     public String getId() {
         return id;
     }
@@ -48,4 +41,24 @@ public class MovieDb {
         return creationDate;
     }
 
+    public void setId(@NonNull String id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    @Override
+    public int compareTo(@NonNull DbEntity dbEntity) {
+        return 0;
+    }
 }
