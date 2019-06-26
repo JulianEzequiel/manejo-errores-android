@@ -5,9 +5,6 @@ import com.bsas.androiddevs.manejoerrores.repository.db.entity.DbEntity;
 
 import java.util.List;
 
-/**
- * Created by Quares Dev User on 29/09/2015.
- */
 public interface ISingleDataAccess <T extends DbEntity> {
 
     void beginTransaction();

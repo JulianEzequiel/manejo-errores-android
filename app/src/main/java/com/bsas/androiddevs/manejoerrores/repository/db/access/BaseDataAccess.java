@@ -6,9 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.bsas.androiddevs.manejoerrores.repository.db.connection.DatabaseInteractor;
 
-/**
- * Created by Quares Dev User on 29/09/2015.
- */
 public class BaseDataAccess {
 
     protected Context context = null;
