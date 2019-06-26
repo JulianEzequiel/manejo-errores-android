@@ -2,6 +2,7 @@ package com.bsas.androiddevs.manejoerrores.repository.db.tasks;
 
 import android.os.AsyncTask;
 
+import com.bsas.androiddevs.manejoerrores.common.logging.ExceptionLogger;
 import com.bsas.androiddevs.manejoerrores.repository.db.dao.MovieDao;
 import com.bsas.androiddevs.manejoerrores.repository.db.entity.MovieDb;
 import com.bsas.androiddevs.manejoerrores.repository.db.tasks.observer.SaveMoviesTaskObserver;
@@ -26,8 +27,7 @@ public class SaveMoviesTask extends AsyncTask<Void, Void, Boolean> {
             this.movieDao.saveAll(this.movieDbs);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
-            //TODO log exception
+            ExceptionLogger.error(e);
             return false;
         }
     }

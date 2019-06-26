@@ -1,5 +1,7 @@
 package com.bsas.androiddevs.manejoerrores.presenter;
 
+import com.bsas.androiddevs.manejoerrores.common.logging.ExceptionLogger;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,7 +35,7 @@ public class PresenterProvider {
             this.presenterCache.put(clazz.getName(), presenter);
             return presenter;
         } catch (InstantiationException | IllegalAccessException e) {
-            e.printStackTrace();
+            ExceptionLogger.error(e);
         }
         return null;
     }
