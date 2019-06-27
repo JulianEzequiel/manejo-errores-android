@@ -5,6 +5,10 @@ import com.bsas.androiddevs.manejoerrores.common.exception.UIErrorException
 import com.bsas.androiddevs.manejoerrores.common.logging.ExceptionLogger
 import kotlin.reflect.KClass
 
+//TODO : ver si directamente se puede hacer con ViewModel:
+// - Las dos funciones estas (extension function)
+// - El warningMesage y el errorMessage (extension property???)
+
 inline fun BaseViewModel.launchControlled(alerts: Array<KClass<*>> = arrayOf(UIErrorException::class),
                                           errors: Array<KClass<*>> = arrayOf(UIErrorException::class),
                                           block: BaseViewModel.() -> Unit): BaseViewModel {
