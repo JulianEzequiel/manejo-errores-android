@@ -3,7 +3,6 @@ package com.bsas.androiddevs.manejoerrores.viewmodel
 import com.bsas.androiddevs.manejoerrores.common.exception.ControlledException
 import com.bsas.androiddevs.manejoerrores.common.exception.UIAlertException
 import com.bsas.androiddevs.manejoerrores.common.exception.UIErrorException
-import com.bsas.androiddevs.manejoerrores.common.logging.ExceptionLogger
 import kotlin.reflect.KClass
 
 //TODO : ver si directamente se puede hacer con ViewModel:
@@ -26,7 +25,6 @@ fun BaseViewModel.handleControlledException(alerts: Array<KClass<*>>, errors: Ar
         alerts.contains(controlledException::class) -> this.warningMessage.value = controlledException.reasonStringResource
         errors.contains(controlledException::class) -> this.errorMessage.value = controlledException.reasonStringResource
         else -> {
-            ExceptionLogger.error(controlledException)
             throw controlledException
         }
     }
