@@ -9,8 +9,8 @@ class MovieManager {
 
     suspend fun getMovies(): List<Movie> {
         return movieRepository.getMovies()
-//        throw UIErrorException(R.string.error, null)
-//        throw UIAlertException(R.string.alert, null)
+//        throw UIErrorException(R.string.error_obtaining_movies, null)
+//        throw UIAlertException(R.string.cannot_obtain_movies_now, null)
     }
 
 }
