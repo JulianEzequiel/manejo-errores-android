@@ -9,14 +9,6 @@ abstract class BaseViewModel : ViewModel() {
 
     var errorMessage = MutableLiveData<Int?>()
 
-    protected fun displayWarning(messageResource: Int) {
-        warningMessage.value = messageResource
-    }
-
-    protected fun displayError(messageResource: Int) {
-        errorMessage.value = messageResource
-    }
-
     fun warningDisplayed() {
         warningMessage.value = null
     }
