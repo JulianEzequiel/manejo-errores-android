@@ -3,8 +3,7 @@ package com.bsas.androiddevs.manejoerrores.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.bsas.androiddevs.manejoerrores.common.Movie
-import com.bsas.androiddevs.manejoerrores.common.exception.UIAlertException
-import com.bsas.androiddevs.manejoerrores.common.exception.UIErrorException
+import com.bsas.androiddevs.manejoerrores.common.logging.aspect.CheckAlerts
 import com.bsas.androiddevs.manejoerrores.manager.MovieManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -23,19 +22,17 @@ class MainViewModel : BaseViewModel() {
         get() = _movies
 
     init {
-        this.getMovies()
+        this.fillScreenAsync()
     }
 
-    private fun getMovies() {
+    private fun fillScreenAsync() {
         this.viewScope.launch {
-            try {
-                _movies.value = movieManager.getMovies()
-            } catch (alert: UIAlertException) {
-                displayWarning(alert.reasonStringResource)
-            } catch (error: UIErrorException) {
-                displayError(error.reasonStringResource)
-            }
+            getMovies()
         }
+    }
+
+    @CheckAlerts private suspend fun getMovies() {
+        _movies.value = movieManager.getMovies()
     }
 
     override fun onCleared() {

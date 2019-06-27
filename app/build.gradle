@@ -7,11 +7,13 @@ buildscript {
         classpath 'io.fabric.tools:gradle:1.+'
     }
 }
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'io.fabric'
+apply plugin: 'com.archinamon.aspectj'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
