@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ManejoErrores</string>
+    <string name="error_obtaining_movies">Ocurrió un error al obtener las películas</string>
+    <string name="generic_warning_dialog_title">Información</string>
+    <string name="ok">Ok</string>
+    <string name="cannot_obtain_movies_now">No se pudieron obtener las películas, intenta nuevamente!</string>
+    <string name="error">Error!</string>
+    <string name="alert">Alerta!!</string>
+</resources>
