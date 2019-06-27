@@ -6,8 +6,8 @@ import com.bsas.androiddevs.manejoerrores.common.logging.ExceptionLogger
 import kotlin.reflect.KClass
 
 inline fun BaseViewModel.launchControlled(alerts: Array<KClass<*>> = arrayOf(UIErrorException::class),
-                                                  errors: Array<KClass<*>> = arrayOf(UIErrorException::class),
-                                                  block: BaseViewModel.() -> Unit): BaseViewModel {
+                                          errors: Array<KClass<*>> = arrayOf(UIErrorException::class),
+                                          block: BaseViewModel.() -> Unit): BaseViewModel {
     try {
         block(this)
     } catch (t: ControlledException) {

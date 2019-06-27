@@ -3,6 +3,8 @@ package com.bsas.androiddevs.manejoerrores.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.bsas.androiddevs.manejoerrores.common.Movie
+import com.bsas.androiddevs.manejoerrores.common.exception.UIAlertException
+import com.bsas.androiddevs.manejoerrores.common.exception.UIErrorException
 import com.bsas.androiddevs.manejoerrores.manager.MovieManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -31,6 +33,11 @@ class MainViewModel : BaseViewModel() {
     }
 
     private suspend fun getMovies() {
+        //Using with custom Controlled Exceptions
+//        launchControlled(alerts = arrayOf(UIAlertException::class),
+//                errors = arrayOf(UIErrorException::class)) {
+//
+//        }
         launchControlled {
             _movies.value = movieManager.getMovies()
         }
