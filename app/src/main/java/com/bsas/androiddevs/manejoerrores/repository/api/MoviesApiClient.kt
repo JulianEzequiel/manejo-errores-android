@@ -1,5 +1,8 @@
 package com.bsas.androiddevs.manejoerrores.repository.api
 
+import com.bsas.androiddevs.manejoerrores.R
+import com.bsas.androiddevs.manejoerrores.common.exception.UIAlertException
+import com.bsas.androiddevs.manejoerrores.common.exception.UIErrorException
 import com.bsas.androiddevs.manejoerrores.common.logging.ExceptionLogger
 import com.bsas.androiddevs.manejoerrores.repository.api.dto.GetMoviesResponse
 import okhttp3.OkHttpClient
@@ -36,11 +39,11 @@ class MoviesApiClient private constructor(){
             if (response.isSuccessful) {
                 return response.body()
             } else {
-                throw RuntimeException("Error obtaiing movies")
+                throw UIAlertException(R.string.cannot_obtain_movies_now, null)
             }
         } catch (e : Exception) {
             ExceptionLogger.error(e)
-            throw RuntimeException("Error obtaiing movies", e)
+            throw UIErrorException(R.string.error_obtaining_movies, e)
         }
     }
 

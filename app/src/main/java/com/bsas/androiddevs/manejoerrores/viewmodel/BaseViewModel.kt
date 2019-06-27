@@ -6,20 +6,20 @@ import androidx.lifecycle.ViewModel
 
 abstract class BaseViewModel : ViewModel() {
 
-    private var _warningMessage = MutableLiveData<String?>()
-    val warningMessage: LiveData<String?>
+    private var _warningMessage = MutableLiveData<Int?>()
+    val warningMessage: LiveData<Int?>
         get() = _warningMessage
 
-    private var _errorMessage = MutableLiveData<String?>()
-    val errorMessage: LiveData<String?>
+    private var _errorMessage = MutableLiveData<Int?>()
+    val errorMessage: LiveData<Int?>
         get() = _errorMessage
 
-    protected fun displayWarning(message: String) {
-        _warningMessage.value = message
+    protected fun displayWarning(messageResource: Int) {
+        _warningMessage.value = messageResource
     }
 
-    protected fun displayError(message: String) {
-        _errorMessage.value = message
+    protected fun displayError(messageResource: Int) {
+        _errorMessage.value = messageResource
     }
 
     fun warningDisplayed() {

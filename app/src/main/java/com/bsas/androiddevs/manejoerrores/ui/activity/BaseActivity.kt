@@ -1,9 +1,10 @@
 package com.bsas.androiddevs.manejoerrores.ui.activity
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.bsas.androiddevs.manejoerrores.ui.activity.util.displayErrorDialog
+import com.bsas.androiddevs.manejoerrores.ui.activity.util.displayWarningDialog
 import com.bsas.androiddevs.manejoerrores.viewmodel.BaseViewModel
 
 abstract class BaseActivity<T : BaseViewModel> : AppCompatActivity() {
@@ -18,26 +19,26 @@ abstract class BaseActivity<T : BaseViewModel> : AppCompatActivity() {
     }
 
     private fun bindObserversToWarningsAndErrors() {
-        this.viewModel.warningMessage.observe(this, Observer { message: String? ->
+        this.viewModel.warningMessage.observe(this, Observer { message: Int? ->
             this.displayWarning(message)
-            this.viewModel.errorDisplayed()
         })
 
-        this.viewModel.errorMessage.observe(this, Observer { message: String? ->
+        this.viewModel.errorMessage.observe(this, Observer { message: Int? ->
             this.displayError(message)
-            this.viewModel.errorDisplayed()
         })
     }
 
-    private fun displayWarning(message: String?) {
+    private fun displayWarning(message: Int?) {
         message?.let {
-            Toast.makeText(this, "Warning", Toast.LENGTH_LONG).show()
+            this.displayWarningDialog(message)
+            this.viewModel.warningDisplayed()
         }
     }
 
-    private fun displayError(message: String?) {
+    private fun displayError(message: Int?) {
         message?.let {
-            Toast.makeText(this, "Error", Toast.LENGTH_LONG).show()
+            this.displayErrorDialog(message)
+            this.viewModel.errorDisplayed()
         }
     }
 

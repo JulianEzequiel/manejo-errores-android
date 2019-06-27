@@ -2,7 +2,6 @@ package com.bsas.androiddevs.manejoerrores.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.bsas.androiddevs.manejoerrores.common.Movie
 import com.bsas.androiddevs.manejoerrores.common.exception.UIAlertException
 import com.bsas.androiddevs.manejoerrores.common.exception.UIErrorException
@@ -28,14 +27,14 @@ class MainViewModel : BaseViewModel() {
     }
 
     private fun getMovies() {
-        try {
-            viewScope.launch {
+        this.viewScope.launch {
+            try {
                 _movies.value = movieManager.getMovies()
+            } catch (alert: UIAlertException) {
+                displayWarning(alert.reasonStringResource)
+            } catch (error: UIErrorException) {
+                displayError(error.reasonStringResource)
             }
-        } catch (alert: UIAlertException) {
-            this.displayWarning(alert.reason)
-        } catch (error: UIErrorException) {
-            this.displayError(error.reason)
         }
     }
 

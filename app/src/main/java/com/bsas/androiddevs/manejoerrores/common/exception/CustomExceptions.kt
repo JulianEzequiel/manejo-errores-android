@@ -1,15 +1,9 @@
 package com.bsas.androiddevs.manejoerrores.common.exception
 
-import java.lang.RuntimeException
-
-class UIAlertException(message: String, ex: Exception?) : RuntimeException(message, ex) {
-
-    val reason : String = message
+class UIAlertException(val reasonStringResource: Int, ex: Exception?) : RuntimeException(ex) {
 
 }
 
-class UIErrorException(message: String, ex: Exception?) : RuntimeException(message, ex) {
-
-    val reason : String = message
+class UIErrorException(val reasonStringResource: Int, ex: Exception?) : RuntimeException(ex) {
 
 }
