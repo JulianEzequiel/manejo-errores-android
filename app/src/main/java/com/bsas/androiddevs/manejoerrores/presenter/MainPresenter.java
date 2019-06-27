@@ -27,6 +27,7 @@ public class MainPresenter extends BasePresenter<MainView> {
             public void onErrorObtainingMovies() {
                 if (MainPresenter.this.view != null)
                     MainPresenter.this.view.displayErrorMessage(R.string.error_obtaining_movies);
+//                MainPresenter.this.view.displayWarningMessage(R.string.cannot_obtain_movies_now);
             }
         });
     }

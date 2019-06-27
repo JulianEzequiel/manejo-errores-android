@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.bsas.androiddevs.manejoerrores.presenter.BasePresenter;
+import com.bsas.androiddevs.manejoerrores.ui.dialog.GenericErrorDialog;
+import com.bsas.androiddevs.manejoerrores.ui.dialog.GenericWarningDialog;
 import com.bsas.androiddevs.manejoerrores.ui.view.BaseView;
 
 public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements BaseView {
@@ -19,23 +21,17 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     }
 
     @Override
-    public void displayErrorMessage(String message) {
-        //TODO
+    public void displayErrorMessage(int messageResource) {
+        GenericErrorDialog genericErrorDialog = new GenericErrorDialog();
+        genericErrorDialog.setMessageResource(messageResource);
+        genericErrorDialog.show(this.getSupportFragmentManager(), null);
     }
 
     @Override
-    public void displayErrorMessage(int message) {
-        //TODO
-    }
-
-    @Override
-    public void displayWarningMessage(String message) {
-        //TODO
-    }
-
-    @Override
-    public void displayWarningMessage(int stringId) {
-        //TODO
+    public void displayWarningMessage(int messageResource) {
+        GenericWarningDialog genericWarningDialog = new GenericWarningDialog();
+        genericWarningDialog.setMessageResource(messageResource);
+        genericWarningDialog.show(this.getSupportFragmentManager(), null);
     }
 
     protected abstract T createPresenter();
